@@ -13,8 +13,7 @@ namespace virtual_pet_age_tracker
         {
             UI RunProgram = new UI();
             RunProgram.CallUI();
-            // Comment out the return statement
-            // to use the sample code
+            // Comment out the return statement to use the sample code
             return;
 
             // Sample Code
@@ -25,7 +24,10 @@ namespace virtual_pet_age_tracker
             
             Pet testPet = new Pet(name, type, currentTime);
 
-            string filePath = ".\\Data\\log.txt";
+            string filePath = ".\\Data\\" + name + ".txt";
+
+            Console.WriteLine(filePath);
+            Console.WriteLine();
 
             Console.WriteLine($"{testPet.Name}, {testPet.Type}, {testPet.Birthday}");
             Console.WriteLine();
