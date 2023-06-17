@@ -13,10 +13,11 @@ namespace virtual_pet_age_tracker
         {
             UI RunProgram = new UI();
             RunProgram.CallUI();
-            // Comment out the return statement to use the sample code
+
+            // Comment out the return statement to use the scratch code
             return;
 
-            // Sample Code
+            // Scratch Code
             
             string name = "Carl";
             string type = "Pixel Puppy";
@@ -35,6 +36,7 @@ namespace virtual_pet_age_tracker
             try
             {
                 testPet.DeletePet(filePath);
+                Console.WriteLine("Your pet has been successfully deleted.");
             }
             catch (Exception e)
             {
@@ -58,6 +60,9 @@ namespace virtual_pet_age_tracker
             
             Console.WriteLine();
             Console.WriteLine($"Your pet's birthday is: {birthday}");
+
+            Console.Write("Press any key to return to the Main Menu.");
+            Console.ReadKey(true);
         }
     }
 }

@@ -22,17 +22,15 @@ namespace virtual_pet_age_tracker.Classes
         }
 
         // Methods
-        public string DeletePet(string filePath)
+        public void DeletePet(string filePath)
         {
             if (File.Exists(filePath))
             {
                 File.Delete(filePath);
-                string successMessage = "Your pet has been successfully deleted.";
-                return successMessage;
             }
             else
             {
-                throw new Exception("The specified pet does not exist.");
+                throw new Exception("The specified pet does not exist or the file is in use.");
             }
         }
     }
