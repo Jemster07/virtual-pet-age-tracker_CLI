@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "virtual_pet_age_tracker", "virtual_pet_age_tracker\virtual_pet_age_tracker.csproj", "{CBA70D67-F965-44D3-8FF0-9D7894E47D5B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CBA70D67-F965-44D3-8FF0-9D7894E47D5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBA70D67-F965-44D3-8FF0-9D7894E47D5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBA70D67-F965-44D3-8FF0-9D7894E47D5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBA70D67-F965-44D3-8FF0-9D7894E47D5B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {19DEA68E-8426-4A47-A782-3B7E8174F1A8}
+	EndGlobalSection
+EndGlobal
