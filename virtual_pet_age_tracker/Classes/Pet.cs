@@ -10,15 +10,31 @@ namespace virtual_pet_age_tracker.Classes
     {
         // Properties
         public string Name { get; private set; }
-        public string Type { get; private set; }
-        public string Birthday { get; private set; }
+        public string PetType { get; private set; }
+        private string DateBirth { get; set; }
+        private string TimeBirth { get; set; }
+        public DateTime Birthday
+        {
+            get
+            {
+                DateOnly date = DateOnly.Parse(DateBirth);
+
+                TimeOnly time = TimeOnly.Parse(TimeBirth);
+
+                string combinedDateTime = date + " " + time;
+                DateTime birthday = DateTime.Parse(combinedDateTime);
+
+                return birthday;
+            }
+        }
 
         // Constructor
-        public Pet(string name, string type, string birthday)
+        public Pet(string name, string petType, string dateBirth, string timeBirth)
         {
             Name = name;
-            Type = type;
-            Birthday = birthday;
+            PetType = petType;
+            DateBirth = dateBirth;
+            TimeBirth = timeBirth;
         }
 
         // Methods

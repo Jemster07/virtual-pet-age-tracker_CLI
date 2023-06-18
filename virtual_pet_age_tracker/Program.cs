@@ -12,25 +12,30 @@ namespace virtual_pet_age_tracker
         static void Main(string[] args)
         {
             UI RunProgram = new UI();
+            // Comment out the CallUI method and return statement to use the scratch code
             RunProgram.CallUI();
-
-            // Comment out the return statement to use the scratch code
             return;
 
             // Scratch Code
-            
+
             string name = "Carl";
-            string type = "Pixel Puppy";
-            string currentTime = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt");
+            string petType = "Pixel Puppy";
+            DateTime currentTime = DateTime.Now;
+
+            string dateBirth = "03/28/1992";
+            string timeBirth = "5:30 am";
             
-            Pet testPet = new Pet(name, type, currentTime);
+            Pet testPet = new Pet(name, petType, dateBirth, timeBirth);
+
+            Console.WriteLine(testPet.Birthday);
+            Console.WriteLine();
 
             string filePath = ".\\Data\\" + name + ".txt";
 
             Console.WriteLine(filePath);
             Console.WriteLine();
 
-            Console.WriteLine($"{testPet.Name}, {testPet.Type}, {testPet.Birthday}");
+            Console.WriteLine($"{testPet.Name}, {testPet.PetType}, {testPet.Birthday}");
             Console.WriteLine();
 
             try
