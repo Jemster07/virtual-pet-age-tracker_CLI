@@ -7,25 +7,21 @@ using System.Xml.Linq;
 
 namespace virtual_pet_age_tracker.Classes
 {
+    // TODO: Exception Handling!!
+
     public class FileIO
     {
         string directoryPath = ".\\Data\\";
+        Dictionary<string, Pet> currentPets = new Dictionary<string, Pet>();
 
-        public void WritePet()
-        {
-            // TODO: This method writes a new pet text file
-        }
-
-        public string[] PetsInDirectory()
+        public string[] ReadDirectory()
         {
             return Directory.GetFiles(directoryPath);
         }
 
-        public void ReadPets()
+        public Dictionary<string, Pet> GeneratePetDictionary()
         {
-            string[] readPets = PetsInDirectory();
-
-            Dictionary<string, Pet> currentPets = new Dictionary<string, Pet>();
+            string[] readPets = ReadDirectory();
 
             string name = null;
             string petType = null;
@@ -68,14 +64,20 @@ namespace virtual_pet_age_tracker.Classes
                     currentPets.Add(newPet.Name, newPet);
                 }
             }
+
+            return currentPets;
         }
 
-        public void DeletePet(string filePath)
+        public void WritePet()
         {
-            // TODO: When a pet is deleted, run the Dictionary Object.Remove() method to remove it from the dictionary
-            
+            // TODO: This method writes a new pet text file
+        }
+
+        public void DeletePet(string petName, string filePath)
+        {
             if (File.Exists(filePath))
             {
+                currentPets.Remove(petName);
                 File.Delete(filePath);
             }
             else
