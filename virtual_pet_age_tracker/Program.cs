@@ -32,6 +32,8 @@ namespace virtual_pet_age_tracker
             
             Pet testPet = new Pet(name, petType, dateBirth, timeBirth);
 
+            testIO.WritePet(testPet);
+
             Console.WriteLine(testPet.Birthday);
             Console.WriteLine();
 

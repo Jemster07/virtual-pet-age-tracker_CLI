@@ -8,7 +8,6 @@ using System.Xml.Linq;
 namespace virtual_pet_age_tracker.Classes
 {
     // TODO: Exception Handling!!
-
     public class FileIO
     {
         string directoryPath = ".\\Data\\";
@@ -27,6 +26,8 @@ namespace virtual_pet_age_tracker.Classes
             string petType = null;
             string dateBirth = null;
             string timeBirth = null;
+
+            string petNameLower = null;
 
             int lineCounter = 0;
 
@@ -60,30 +61,57 @@ namespace virtual_pet_age_tracker.Classes
                         }
                     }
 
-                    Pet newPet = new(name, petType, dateBirth, timeBirth);
-                    currentPets.Add(newPet.Name, newPet);
+                    Pet pet = new Pet(name, petType, dateBirth, timeBirth);
+
+                    petNameLower = pet.Name.ToLower();
+
+                    currentPets.Add(petNameLower, pet);
                 }
             }
 
             return currentPets;
         }
 
-        public void WritePet()
+        public bool WritePet(Pet newPet)
         {
-            // TODO: This method writes a new pet text file
+            string filePath = $"{directoryPath}{newPet.Name}.txt";
+            string petNameLower = null;
+
+            DateOnly dateBirth = DateOnly.FromDateTime(newPet.Birthday);
+            TimeOnly timeBirth = TimeOnly.FromDateTime(newPet.Birthday);
+
+            using (StreamWriter sw = new StreamWriter(filePath))
+            {
+                sw.WriteLine(newPet.Name);
+                sw.WriteLine(newPet.PetType);
+                sw.WriteLine(dateBirth);
+                sw.WriteLine(timeBirth);
+            }
+
+            petNameLower = newPet.Name.ToLower();
+
+            currentPets.Add(petNameLower, newPet);
+            // TODO: Put a Try/Catch loop here in case pet is already in dictionary
+
+            return currentPets.ContainsKey(petNameLower);
         }
 
-        public void DeletePet(string petName, string filePath)
+        public bool DeletePet(Pet pet)
         {
+            string filePath = $"{directoryPath}{pet.Name}.txt";
+            string petNameLower = pet.Name.ToLower();
+
             if (File.Exists(filePath))
             {
-                currentPets.Remove(petName);
+                currentPets.Remove(petNameLower);
                 File.Delete(filePath);
             }
             else
             {
                 throw new Exception("The specified pet does not exist or the file is in use.");
             }
+
+            return !currentPets.ContainsKey(petNameLower);
         }
     }
 }
