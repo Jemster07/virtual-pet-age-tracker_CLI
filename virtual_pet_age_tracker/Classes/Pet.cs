@@ -37,18 +37,5 @@ namespace virtual_pet_age_tracker.Classes
             DateBirth = dateBirth;
             TimeBirth = timeBirth;
         }
-
-        // Methods
-        public void DeletePet(string filePath)
-        {
-            if (File.Exists(filePath))
-            {
-                File.Delete(filePath);
-            }
-            else
-            {
-                throw new Exception("The specified pet does not exist or the file is in use.");
-            }
-        }
     }
 }

@@ -23,29 +23,64 @@ namespace virtual_pet_age_tracker.Classes
 
         public void ReadPets()
         {
-            // TODO: Use the PetsInDirectory method to generate an array of the pet file paths
-            // For each item in the array, create a pet object and add it to a pet dictionary
-            // Assign a numerical index to serve as the dictionary key - the pet object is the value
+            string[] readPets = PetsInDirectory();
 
-            string[] currentPets = PetsInDirectory();
+            Dictionary<string, Pet> currentPets = new Dictionary<string, Pet>();
 
-            foreach (string item in currentPets)
+            string name = null;
+            string petType = null;
+            string dateBirth = null;
+            string timeBirth = null;
+
+            int lineCounter = 0;
+
+            foreach (string item in readPets)
             {
                 using (StreamReader sr = new StreamReader(item))
                 {
                     while (!sr.EndOfStream)
                     {
-                        // EXAMPLE
+                        string line = sr.ReadLine();
 
-                        //string line = sr.ReadLine();
-                        //string[] productSourceArray = line.Split('|');
-
-                        //string productLocation = productSourceArray[0];
-                        //string productName = productSourceArray[1];
-                        //decimal productPrice = decimal.Parse(productSourceArray[2]);
-                        //string productType = productSourceArray[3];
+                        if (lineCounter == 0)
+                        {
+                            name = line;
+                            lineCounter++;
+                        }
+                        else if (lineCounter == 1)
+                        {
+                            petType = line;
+                            lineCounter++;
+                        }
+                        else if (lineCounter == 2)
+                        {
+                            dateBirth = line;
+                            lineCounter++;
+                        }
+                        else // lineCounter == 3
+                        {
+                            timeBirth = line;
+                            lineCounter = 0;
+                        }
                     }
+
+                    Pet newPet = new(name, petType, dateBirth, timeBirth);
+                    currentPets.Add(newPet.Name, newPet);
                 }
+            }
+        }
+
+        public void DeletePet(string filePath)
+        {
+            // TODO: When a pet is deleted, run the Dictionary Object.Remove() method to remove it from the dictionary
+            
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+            else
+            {
+                throw new Exception("The specified pet does not exist or the file is in use.");
             }
         }
     }
