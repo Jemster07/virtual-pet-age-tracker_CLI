@@ -13,10 +13,13 @@ namespace virtual_pet_age_tracker
         {
             UI RunProgram = new UI();
             // Comment out the CallUI method and return statement to use the scratch code
-            RunProgram.CallUI();
-            return;
+            //RunProgram.CallUI();
+            //return;
 
             // Scratch Code
+
+            FileIO testIO = new FileIO();
+            testIO.ReadPets();
 
             string name = "Carl";
             string petType = "Pixel Puppy";
@@ -53,9 +56,11 @@ namespace virtual_pet_age_tracker
 
             string userInput = Console.ReadLine();
             DateOnly date = DateOnly.Parse(userInput);
+            // Make sure to include a Try/Catch to handle non-DateOnly inputs
             
             Console.WriteLine();
             Console.Write("Enter the pet's time of birth using AM/PM or 24-hour format: ");
+            // Make sure to include a Try/Catch to handle non-TimeOnly inputs
 
             userInput = Console.ReadLine();
             TimeOnly time = TimeOnly.Parse(userInput);

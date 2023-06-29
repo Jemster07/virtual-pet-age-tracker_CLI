@@ -21,7 +21,8 @@ namespace virtual_pet_age_tracker.Classes
 
                 TimeOnly time = TimeOnly.Parse(TimeBirth);
 
-                string combinedDateTime = date + " " + time;
+                string combinedDateTime = $"{date} {time}";
+
                 DateTime birthday = DateTime.Parse(combinedDateTime);
 
                 return birthday;

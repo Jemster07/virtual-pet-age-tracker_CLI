@@ -10,6 +10,8 @@ namespace virtual_pet_age_tracker.Classes
     {
         public void CallUI()
         {
+            string versionNum = "version 0.1.0";
+
             bool endProgram = false;
             bool loopCurrentPets = false;
             bool loopAddPet = false;
@@ -20,9 +22,10 @@ namespace virtual_pet_age_tracker.Classes
             while (!endProgram)
             {
                 // TODO: Add check for Current Pets, if none, don't display the Current Pets menu
+                // Use the [FileIO.PetsInDirectory.Length != 0] method as a bool to check for current pets
                 
                 Console.Clear();
-                Console.WriteLine("---{ Virtual Pet Age Tracker v 0.1.0 }---");
+                Console.WriteLine($"---{{ Virtual Pet Age Tracker {versionNum} }}---");
                 Console.WriteLine();
                 Console.WriteLine("--- Main Menu ---");
                 Console.WriteLine();
@@ -38,7 +41,7 @@ namespace virtual_pet_age_tracker.Classes
                 while (userInput == null)
                 {
                     Console.Clear();
-                    Console.WriteLine("---{ Virtual Pet Age Tracker v 0.1.0 }---");
+                    Console.WriteLine($"---{{ Virtual Pet Age Tracker {versionNum} }}---");
                     Console.WriteLine();
                     Console.WriteLine("[UNIT TYPE INVALID]");
                     Console.WriteLine();
@@ -60,7 +63,7 @@ namespace virtual_pet_age_tracker.Classes
                     && !userInputLower.StartsWith("e"))
                 {
                     Console.Clear();
-                    Console.WriteLine("---{ Virtual Pet Age Tracker v 0.1.0 }---");
+                    Console.WriteLine($"---{{ Virtual Pet Age Tracker {versionNum} }}---");
                     Console.WriteLine();
                     Console.WriteLine("[INVALID INPUT]");
                     Console.WriteLine();
@@ -90,7 +93,7 @@ namespace virtual_pet_age_tracker.Classes
                 else // Exit
                 {
                     Console.Clear();
-                    Console.WriteLine("---{ Virtual Pet Age Tracker v 0.1.0 }---");
+                    Console.WriteLine($"---{{ Virtual Pet Age Tracker {versionNum} }}---");
                     Console.WriteLine();
                     Console.WriteLine("Thank you for using my Virtual Pet Age Tracker!");
                     Console.WriteLine();
