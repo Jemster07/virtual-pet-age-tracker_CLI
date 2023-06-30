@@ -47,7 +47,7 @@ namespace virtual_pet_age_tracker
 
             try
             {
-                testIO.DeletePet(petToDelete.Name, filePath);
+                testIO.DeletePet(petToDelete);
                 Console.WriteLine("Your pet has been successfully deleted.");
             }
             catch (Exception e)

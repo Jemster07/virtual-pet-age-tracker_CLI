@@ -7,7 +7,6 @@ using System.Xml.Linq;
 
 namespace virtual_pet_age_tracker.Classes
 {
-    // TODO: Exception Handling!!
     public class FileIO
     {
         string directoryPath = ".\\Data\\";
@@ -15,7 +14,14 @@ namespace virtual_pet_age_tracker.Classes
 
         public string[] ReadDirectory()
         {
-            return Directory.GetFiles(directoryPath);
+            try
+            {
+                return Directory.GetFiles(directoryPath);
+            }
+            catch (Exception)
+            {
+                throw new Exception("ERROR: The directory where pets are saved is currently inaccessible.");
+            }
         }
 
         public Dictionary<string, Pet> GeneratePetDictionary()
@@ -27,46 +33,51 @@ namespace virtual_pet_age_tracker.Classes
             string dateBirth = null;
             string timeBirth = null;
 
-            string petNameLower = null;
-
             int lineCounter = 0;
 
-            foreach (string item in readPets)
+            try
             {
-                using (StreamReader sr = new StreamReader(item))
+                foreach (string item in readPets)
                 {
-                    while (!sr.EndOfStream)
+                    using (StreamReader sr = new StreamReader(item))
                     {
-                        string line = sr.ReadLine();
+                        while (!sr.EndOfStream)
+                        {
+                            string line = sr.ReadLine();
 
-                        if (lineCounter == 0)
-                        {
-                            name = line;
-                            lineCounter++;
+                            if (lineCounter == 0)
+                            {
+                                name = line;
+                                lineCounter++;
+                            }
+                            else if (lineCounter == 1)
+                            {
+                                petType = line;
+                                lineCounter++;
+                            }
+                            else if (lineCounter == 2)
+                            {
+                                dateBirth = line;
+                                lineCounter++;
+                            }
+                            else // lineCounter == 3
+                            {
+                                timeBirth = line;
+                                lineCounter = 0;
+                            }
                         }
-                        else if (lineCounter == 1)
-                        {
-                            petType = line;
-                            lineCounter++;
-                        }
-                        else if (lineCounter == 2)
-                        {
-                            dateBirth = line;
-                            lineCounter++;
-                        }
-                        else // lineCounter == 3
-                        {
-                            timeBirth = line;
-                            lineCounter = 0;
-                        }
+
+                        Pet pet = new Pet(name, petType, dateBirth, timeBirth);
+
+                        string petNameLower = pet.Name.ToLower();
+
+                        currentPets.Add(petNameLower, pet);
                     }
-
-                    Pet pet = new Pet(name, petType, dateBirth, timeBirth);
-
-                    petNameLower = pet.Name.ToLower();
-
-                    currentPets.Add(petNameLower, pet);
                 }
+            }
+            catch (Exception)
+            {
+                throw new Exception("ERROR: The directory where pets are saved is currently inaccessible.");
             }
 
             return currentPets;
@@ -75,23 +86,34 @@ namespace virtual_pet_age_tracker.Classes
         public bool WritePet(Pet newPet)
         {
             string filePath = $"{directoryPath}{newPet.Name}.txt";
-            string petNameLower = null;
+            string petNameLower = newPet.Name.ToLower();
+
+            if (!currentPets.ContainsKey(petNameLower))
+            {
+                currentPets.Add(petNameLower, newPet);
+            }
+            else
+            {
+                throw new Exception("ERROR: The specified pet already exists.");
+            }
 
             DateOnly dateBirth = DateOnly.FromDateTime(newPet.Birthday);
             TimeOnly timeBirth = TimeOnly.FromDateTime(newPet.Birthday);
 
-            using (StreamWriter sw = new StreamWriter(filePath))
+            try
             {
-                sw.WriteLine(newPet.Name);
-                sw.WriteLine(newPet.PetType);
-                sw.WriteLine(dateBirth);
-                sw.WriteLine(timeBirth);
+                using (StreamWriter sw = new StreamWriter(filePath))
+                {
+                    sw.WriteLine(newPet.Name);
+                    sw.WriteLine(newPet.PetType);
+                    sw.WriteLine(dateBirth);
+                    sw.WriteLine(timeBirth);
+                }
             }
-
-            petNameLower = newPet.Name.ToLower();
-
-            currentPets.Add(petNameLower, newPet);
-            // TODO: Put a Try/Catch loop here in case pet is already in dictionary
+            catch (Exception)
+            {
+                throw new Exception("ERROR: There was an issue writing the pet file.");
+            }
 
             return currentPets.ContainsKey(petNameLower);
         }
@@ -101,14 +123,21 @@ namespace virtual_pet_age_tracker.Classes
             string filePath = $"{directoryPath}{pet.Name}.txt";
             string petNameLower = pet.Name.ToLower();
 
-            if (File.Exists(filePath))
+            try
             {
-                currentPets.Remove(petNameLower);
-                File.Delete(filePath);
+                if (File.Exists(filePath))
+                {
+                    currentPets.Remove(petNameLower);
+                    File.Delete(filePath);
+                }
+                else
+                {
+                    throw new Exception("ERROR: The specified pet does not exist.");
+                }
             }
-            else
+            catch (Exception)
             {
-                throw new Exception("The specified pet does not exist or the file is in use.");
+                throw new Exception("ERROR: The directory where pets are saved is currently inaccessible.");
             }
 
             return !currentPets.ContainsKey(petNameLower);
