@@ -37,5 +37,9 @@ namespace virtual_pet_age_tracker.Classes
             DateBirth = dateBirth;
             TimeBirth = timeBirth;
         }
+
+        // Method
+
+        // TODO: Write method to calculate pet's age using Birthday property and current DateTime
     }
 }

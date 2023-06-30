@@ -12,6 +12,12 @@ namespace virtual_pet_age_tracker.Classes
         string directoryPath = ".\\Data\\";
         Dictionary<string, Pet> currentPets = new Dictionary<string, Pet>();
 
+        /// <summary>
+        /// Checks the input directory path for existing files.
+        /// An empty directory will return a Length of 0.
+        /// </summary>
+        /// <returns>String Array containing file paths.</returns>
+        /// <exception cref="Exception"></exception>
         public string[] ReadDirectory()
         {
             try
@@ -24,6 +30,12 @@ namespace virtual_pet_age_tracker.Classes
             }
         }
 
+        /// <summary>
+        /// Reads all files in a given directory and writes their contents to the properties of a Pet Object.
+        /// Adds the generated Pet Objects to a Dictionary, using the lowercase Name property as the Key.
+        /// </summary>
+        /// <returns>Dictionary containing Pet Objects.</returns>
+        /// <exception cref="Exception"></exception>
         public Dictionary<string, Pet> GeneratePetDictionary()
         {
             string[] readPets = ReadDirectory();
@@ -83,29 +95,36 @@ namespace virtual_pet_age_tracker.Classes
             return currentPets;
         }
 
-        public bool WritePet(Pet newPet)
+        /// <summary>
+        /// Creates a new file in the directory using a Pet Object.
+        /// Adds the Pet Object to a Dictionary, using the lowercase Name property as the Key.
+        /// </summary>
+        /// <param name="pet"></param>
+        /// <returns>Bool indicating if the Dictionary contains the newly created Pet Object.</returns>
+        /// <exception cref="Exception"></exception>
+        public bool WritePet(Pet pet)
         {
-            string filePath = $"{directoryPath}{newPet.Name}.txt";
-            string petNameLower = newPet.Name.ToLower();
+            string filePath = $"{directoryPath}{pet.Name}.txt";
+            string petNameLower = pet.Name.ToLower();
 
             if (!currentPets.ContainsKey(petNameLower))
             {
-                currentPets.Add(petNameLower, newPet);
+                currentPets.Add(petNameLower, pet);
             }
             else
             {
                 throw new Exception("ERROR: The specified pet already exists.");
             }
 
-            DateOnly dateBirth = DateOnly.FromDateTime(newPet.Birthday);
-            TimeOnly timeBirth = TimeOnly.FromDateTime(newPet.Birthday);
+            DateOnly dateBirth = DateOnly.FromDateTime(pet.Birthday);
+            TimeOnly timeBirth = TimeOnly.FromDateTime(pet.Birthday);
 
             try
             {
                 using (StreamWriter sw = new StreamWriter(filePath))
                 {
-                    sw.WriteLine(newPet.Name);
-                    sw.WriteLine(newPet.PetType);
+                    sw.WriteLine(pet.Name);
+                    sw.WriteLine(pet.PetType);
                     sw.WriteLine(dateBirth);
                     sw.WriteLine(timeBirth);
                 }
@@ -118,8 +137,14 @@ namespace virtual_pet_age_tracker.Classes
             return currentPets.ContainsKey(petNameLower);
         }
 
+        /// <summary>
+        /// Removes the given Pet Object from the Dictionary and deletes the associated file from the directory.
+        /// </summary>
+        /// <param name="pet"></param>
+        /// <returns>Bool indicating if the Dictionary no longer contains the deleted Pet Object.</returns>
+        /// <exception cref="Exception"></exception>
         public bool DeletePet(Pet pet)
-        {
+        {            
             string filePath = $"{directoryPath}{pet.Name}.txt";
             string petNameLower = pet.Name.ToLower();
 
@@ -142,5 +167,5 @@ namespace virtual_pet_age_tracker.Classes
 
             return !currentPets.ContainsKey(petNameLower);
         }
-    }
-}
+
+        // TODO: Write a void method to ConsoleWrite the currentPets dictionary

@@ -104,8 +104,6 @@ namespace virtual_pet_age_tracker.Classes
 
                 while (loopCurrentPets)
                 {
-                    // TODO: Read pet text files, for each print the Name, Pet Type, Birthday, and Current Age
-
                     loopCurrentPets = false;
                     Console.Write("Press any key to return to the Main Menu.");
                     Console.ReadKey(true);
