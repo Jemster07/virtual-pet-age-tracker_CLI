@@ -144,7 +144,7 @@ namespace virtual_pet_age_tracker.Classes
         /// <returns>Bool indicating if the Dictionary no longer contains the deleted Pet Object.</returns>
         /// <exception cref="Exception"></exception>
         public bool DeletePet(Pet pet)
-        {            
+        {
             string filePath = $"{directoryPath}{pet.Name}.txt";
             string petNameLower = pet.Name.ToLower();
 
@@ -168,4 +168,11 @@ namespace virtual_pet_age_tracker.Classes
             return !currentPets.ContainsKey(petNameLower);
         }
 
-        // TODO: Write a void method to ConsoleWrite the currentPets dictionary
+
+        public void PrintCurrentPets()
+        {
+            // TODO: Write a void method to ConsoleWrite the currentPets dictionary
+
+        }
+    }
+}
