@@ -12,6 +12,9 @@ namespace virtual_pet_age_tracker.Classes
         {
             string versionNum = "version 0.1.0";
 
+            FileIO fileIO = new FileIO();
+            fileIO.GeneratePetDictionary();
+
             bool endProgram = false;
             bool loopCurrentPets = false;
             bool loopAddPet = false;
@@ -105,6 +108,13 @@ namespace virtual_pet_age_tracker.Classes
                 while (loopCurrentPets)
                 {
                     loopCurrentPets = false;
+
+                    Console.Clear();
+                    Console.WriteLine($"---{{ Virtual Pet Age Tracker {versionNum} }}---");
+                    Console.WriteLine();
+
+                    fileIO.PrintCurrentPets();
+
                     Console.Write("Press any key to return to the Main Menu.");
                     Console.ReadKey(true);
                 }

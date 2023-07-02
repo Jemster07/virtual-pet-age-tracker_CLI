@@ -168,11 +168,22 @@ namespace virtual_pet_age_tracker.Classes
             return !currentPets.ContainsKey(petNameLower);
         }
 
-
+        /// <summary>
+        /// Writes the current pets to the Console.
+        /// </summary>
         public void PrintCurrentPets()
         {
-            // TODO: Write a void method to ConsoleWrite the currentPets dictionary
+            Console.WriteLine("--- Current Pets ---");
+            Console.WriteLine();
 
+            foreach (KeyValuePair<string, Pet> item in currentPets)
+            {
+                Console.WriteLine($"Name: {item.Value.Name}");
+                Console.WriteLine($"Pet Type: {item.Value.PetType}");
+                Console.WriteLine($"Birthday: {item.Value.Birthday}");
+                //Console.WriteLine($"Age: {item.Value.CalculateAge}");
+                Console.WriteLine();
+            }
         }
     }
 }

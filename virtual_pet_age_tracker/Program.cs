@@ -13,15 +13,19 @@ namespace virtual_pet_age_tracker
         {
             UI RunProgram = new UI();
             // Comment out the CallUI method and return statement to use the scratch code
-            RunProgram.CallUI();
-            return;
+            //RunProgram.CallUI();
+            //return;
 
             // Scratch Code
 
             FileIO testIO = new FileIO();
             Dictionary<string, Pet> currentPets = testIO.GeneratePetDictionary();
 
-            Pet petToDelete = currentPets["Carl"];
+            //Pet petToDelete = currentPets["Carl"];
+
+            DateTime currentDate = DateTime.Now;
+            TimeSpan ageTimeSpan = currentDate.Subtract(currentPets["carl"].Birthday);
+            int petAge = ageTimeSpan.Days;
 
             string name = "Carl";
             string petType = "Pixel Puppy";
@@ -47,7 +51,7 @@ namespace virtual_pet_age_tracker
 
             try
             {
-                testIO.DeletePet(petToDelete);
+                //testIO.DeletePet(petToDelete);
                 Console.WriteLine("Your pet has been successfully deleted.");
             }
             catch (Exception e)
