@@ -43,6 +43,11 @@ namespace virtual_pet_age_tracker.Classes
         {
             DateTime currentDate = DateTime.Now;
             TimeSpan dateDifference = currentDate.Subtract(birthday);
+
+            // TODO: Adjust so only the TimeSpan object is delivered.
+            // Have an else if loop in the FileIO PrintCurrentPets method that determines
+            // whether to print years, months, and days
+
             int age = dateDifference.Days;
 
             return age;

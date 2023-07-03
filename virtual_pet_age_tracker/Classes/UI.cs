@@ -25,7 +25,7 @@ namespace virtual_pet_age_tracker.Classes
             while (!endProgram)
             {
                 // TODO: Add check for Current Pets, if none, don't display the Current Pets menu
-                // Use the [FileIO.PetsInDirectory.Length != 0] method as a bool to check for current pets
+                // Use the [FileIO.ReadDirectory.Length != 0] method as a bool to check for current pets
                 
                 Console.Clear();
                 Console.WriteLine($"---{{ Virtual Pet Age Tracker {versionNum} }}---");

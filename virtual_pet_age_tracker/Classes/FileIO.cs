@@ -40,59 +40,66 @@ namespace virtual_pet_age_tracker.Classes
         {
             string[] readPets = ReadDirectory();
 
-            string name = null;
-            string petType = null;
-            string dateBirth = null;
-            string timeBirth = null;
-
-            int lineCounter = 0;
-
-            try
+            if (readPets.Length == 0)
             {
-                foreach (string item in readPets)
+                return currentPets;
+            }
+            else
+            {
+                string name = null;
+                string petType = null;
+                string dateBirth = null;
+                string timeBirth = null;
+
+                int lineCounter = 0;
+
+                try
                 {
-                    using (StreamReader sr = new StreamReader(item))
+                    foreach (string item in readPets)
                     {
-                        while (!sr.EndOfStream)
+                        using (StreamReader sr = new StreamReader(item))
                         {
-                            string line = sr.ReadLine();
+                            while (!sr.EndOfStream)
+                            {
+                                string line = sr.ReadLine();
 
-                            if (lineCounter == 0)
-                            {
-                                name = line;
-                                lineCounter++;
+                                if (lineCounter == 0)
+                                {
+                                    name = line;
+                                    lineCounter++;
+                                }
+                                else if (lineCounter == 1)
+                                {
+                                    petType = line;
+                                    lineCounter++;
+                                }
+                                else if (lineCounter == 2)
+                                {
+                                    dateBirth = line;
+                                    lineCounter++;
+                                }
+                                else // lineCounter == 3
+                                {
+                                    timeBirth = line;
+                                    lineCounter = 0;
+                                }
                             }
-                            else if (lineCounter == 1)
-                            {
-                                petType = line;
-                                lineCounter++;
-                            }
-                            else if (lineCounter == 2)
-                            {
-                                dateBirth = line;
-                                lineCounter++;
-                            }
-                            else // lineCounter == 3
-                            {
-                                timeBirth = line;
-                                lineCounter = 0;
-                            }
+
+                            Pet pet = new Pet(name, petType, dateBirth, timeBirth);
+
+                            string petNameLower = pet.Name.ToLower();
+
+                            currentPets.Add(petNameLower, pet);
                         }
-
-                        Pet pet = new Pet(name, petType, dateBirth, timeBirth);
-
-                        string petNameLower = pet.Name.ToLower();
-
-                        currentPets.Add(petNameLower, pet);
                     }
                 }
-            }
-            catch (Exception)
-            {
-                throw new Exception("ERROR: The directory where pets are saved is currently inaccessible.");
-            }
+                catch (Exception)
+                {
+                    throw new Exception("ERROR: The directory where pets are saved is currently inaccessible.");
+                }
 
-            return currentPets;
+                return currentPets;
+            }
         }
 
         /// <summary>
