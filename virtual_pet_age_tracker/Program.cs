@@ -13,8 +13,8 @@ namespace virtual_pet_age_tracker
         {
             UI RunProgram = new UI();
             // Comment out the CallUI method and return statement to use the scratch code
-            //RunProgram.CallUI();
-            //return;
+            RunProgram.CallUI();
+            return;
 
             // Scratch Code
 
@@ -24,8 +24,8 @@ namespace virtual_pet_age_tracker
             //Pet petToDelete = currentPets["Carl"];
 
             DateTime currentDate = DateTime.Now;
-            TimeSpan ageTimeSpan = currentDate.Subtract(currentPets["carl"].Birthday);
-            int petAge = ageTimeSpan.Days;
+            TimeSpan dateDifference = currentDate.Subtract(currentPets["carl"].Birthday);
+            int age = dateDifference.Days;
 
             string name = "Carl";
             string petType = "Pixel Puppy";

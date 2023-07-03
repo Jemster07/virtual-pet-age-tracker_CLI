@@ -39,7 +39,13 @@ namespace virtual_pet_age_tracker.Classes
         }
 
         // Method
+        public int CalculateAge(DateTime birthday)
+        {
+            DateTime currentDate = DateTime.Now;
+            TimeSpan dateDifference = currentDate.Subtract(birthday);
+            int age = dateDifference.Days;
 
-        // TODO: Write method to calculate pet's age using Birthday property and current DateTime
+            return age;
+        }
     }
 }
