@@ -25,7 +25,7 @@ namespace virtual_pet_age_tracker.Classes
             while (!endProgram)
             {                
                 Console.Clear();
-                Console.WriteLine($"---{{ Virtual Pet Age Tracker {versionNum} }}---");
+                Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
                 Console.WriteLine();
                 Console.WriteLine("--- Main Menu ---");
                 Console.WriteLine();
@@ -41,7 +41,7 @@ namespace virtual_pet_age_tracker.Classes
                 while (userInput == null)
                 {
                     Console.Clear();
-                    Console.WriteLine($"---{{ Virtual Pet Age Tracker {versionNum} }}---");
+                    Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
                     Console.WriteLine();
                     Console.WriteLine("[UNIT TYPE INVALID]");
                     Console.WriteLine();
@@ -63,7 +63,7 @@ namespace virtual_pet_age_tracker.Classes
                     && !userInputLower.StartsWith("e"))
                 {
                     Console.Clear();
-                    Console.WriteLine($"---{{ Virtual Pet Age Tracker {versionNum} }}---");
+                    Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
                     Console.WriteLine();
                     Console.WriteLine("[INVALID INPUT]");
                     Console.WriteLine();
@@ -93,10 +93,9 @@ namespace virtual_pet_age_tracker.Classes
                 else // Exit
                 {
                     Console.Clear();
-                    Console.WriteLine($"---{{ Virtual Pet Age Tracker {versionNum} }}---");
+                    Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
                     Console.WriteLine();
-                    Console.WriteLine("Thank you for using my Virtual Pet Age Tracker!");
-                    Console.WriteLine();
+                    Console.WriteLine("Thank you for using my Pet Age Tracker!");
                     endProgram = true;
                 }
 
@@ -107,7 +106,7 @@ namespace virtual_pet_age_tracker.Classes
                     loopCurrentPets = false;
 
                     Console.Clear();
-                    Console.WriteLine($"---{{ Virtual Pet Age Tracker {versionNum} }}---");
+                    Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
                     Console.WriteLine();
                     Console.WriteLine("--- Current Pets ---");
                     Console.WriteLine();
@@ -125,7 +124,7 @@ namespace virtual_pet_age_tracker.Classes
                     loopAddPet = false;
 
                     Console.Clear();
-                    Console.WriteLine($"---{{ Virtual Pet Age Tracker {versionNum} }}---");
+                    Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
                     Console.WriteLine();
                     Console.WriteLine("--- Add Pet ---");
                     Console.WriteLine();
@@ -135,7 +134,7 @@ namespace virtual_pet_age_tracker.Classes
                     string name = userInput;
                     Console.WriteLine();
 
-                    Console.Write("Enter the type of virtual pet: ");
+                    Console.Write("Enter the type of pet: ");
                     userInput = Console.ReadLine();
                     string petType = userInput;
                     Console.WriteLine();
@@ -157,7 +156,7 @@ namespace virtual_pet_age_tracker.Classes
                     Pet newPet = new Pet(name, petType, dateBirth, timeBirth);
                     fileIO.WritePet(newPet);
 
-                    // TODO: Write success message Try/Catch to catch exception messages
+                    // TODO: Write success message and Try/Catch to catch exception messages
 
                     Console.Write("Press any key to return to the Main Menu.");
                     Console.ReadKey(true);
