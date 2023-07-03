@@ -180,12 +180,44 @@ namespace virtual_pet_age_tracker.Classes
         /// </summary>
         public void PrintCurrentPets()
         {
-            foreach (KeyValuePair<string, Pet> item in currentPets)
+            if (currentPets.Count > 0)
             {
-                Console.WriteLine($"Name: {item.Value.Name}");
-                Console.WriteLine($"Pet Type: {item.Value.PetType}");
-                Console.WriteLine($"Birthday: {item.Value.Birthday}");
-                Console.WriteLine($"Age: {item.Value.CalculateAge(item.Value.Birthday)} days old");
+                foreach (KeyValuePair<string, Pet> item in currentPets)
+                {
+                    TimeSpan age = item.Value.CalculateAge(item.Value.Birthday);
+
+                    if (age.Days >= 365)
+                    {
+                        int yearCounter = 0;
+                        int ageDays = age.Days;
+
+                        while (ageDays >= 365)
+                        {
+                            yearCounter++;
+                            ageDays -= 365;
+                        }
+
+                        string estimatedAge = $"{yearCounter} year(s) and {ageDays} day(s) old";
+
+                        Console.WriteLine($"Name: {item.Value.Name}");
+                        Console.WriteLine($"Pet Type: {item.Value.PetType}");
+                        Console.WriteLine($"Birthday: {item.Value.Birthday}");
+                        Console.WriteLine($"Age: {estimatedAge}");
+                        Console.WriteLine();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Name: {item.Value.Name}");
+                        Console.WriteLine($"Pet Type: {item.Value.PetType}");
+                        Console.WriteLine($"Birthday: {item.Value.Birthday}");
+                        Console.WriteLine($"Age: {age.Days} day(s) old");
+                        Console.WriteLine();
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("There are no active pets.");
                 Console.WriteLine();
             }
         }

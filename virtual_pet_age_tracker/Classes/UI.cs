@@ -23,10 +23,7 @@ namespace virtual_pet_age_tracker.Classes
             // Main Menu
 
             while (!endProgram)
-            {
-                // TODO: Add check for Current Pets, if none, don't display the Current Pets menu
-                // Use the [FileIO.ReadDirectory.Length != 0] method as a bool to check for current pets
-                
+            {                
                 Console.Clear();
                 Console.WriteLine($"---{{ Virtual Pet Age Tracker {versionNum} }}---");
                 Console.WriteLine();
@@ -134,19 +131,18 @@ namespace virtual_pet_age_tracker.Classes
                     Console.WriteLine();
 
                     Console.Write("Enter the pet's name: ");
-                    
                     userInput = Console.ReadLine();
                     string name = userInput;
                     Console.WriteLine();
 
                     Console.Write("Enter the type of virtual pet: ");
-
                     userInput = Console.ReadLine();
                     string petType = userInput;
                     Console.WriteLine();
 
-                    Console.Write("Enter the pet's birthday: ");
+                    // TODO: Ask if user wants to use current date/time for birthday
 
+                    Console.Write("Enter the pet's birthday: ");
                     userInput = Console.ReadLine();
                     string dateBirth = userInput;
                     // Make sure to include a Try/Catch to handle non-DateOnly inputs
@@ -154,7 +150,6 @@ namespace virtual_pet_age_tracker.Classes
 
                     Console.Write("Enter the pet's time of birth using AM/PM or 24-hour format: ");
                     // Make sure to include a Try/Catch to handle non-TimeOnly inputs
-
                     userInput = Console.ReadLine();
                     string timeBirth = userInput;
                     Console.WriteLine();
@@ -172,6 +167,8 @@ namespace virtual_pet_age_tracker.Classes
 
                 while (loopRemovePet)
                 {
+                    // TODO: Instantiate DeletePet method
+
                     loopRemovePet = false;
                     Console.Write("Press any key to return to the Main Menu.");
                     Console.ReadKey(true);
