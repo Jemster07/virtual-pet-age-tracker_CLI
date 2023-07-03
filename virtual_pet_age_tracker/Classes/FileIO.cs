@@ -173,15 +173,12 @@ namespace virtual_pet_age_tracker.Classes
         /// </summary>
         public void PrintCurrentPets()
         {
-            Console.WriteLine("--- Current Pets ---");
-            Console.WriteLine();
-
             foreach (KeyValuePair<string, Pet> item in currentPets)
             {
                 Console.WriteLine($"Name: {item.Value.Name}");
                 Console.WriteLine($"Pet Type: {item.Value.PetType}");
                 Console.WriteLine($"Birthday: {item.Value.Birthday}");
-                Console.WriteLine($"Age: {item.Value.CalculateAge(item.Value.Birthday)} years old");
+                Console.WriteLine($"Age: {item.Value.CalculateAge(item.Value.Birthday)} days old");
                 Console.WriteLine();
             }
         }

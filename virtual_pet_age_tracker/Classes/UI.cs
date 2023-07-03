@@ -112,6 +112,8 @@ namespace virtual_pet_age_tracker.Classes
                     Console.Clear();
                     Console.WriteLine($"---{{ Virtual Pet Age Tracker {versionNum} }}---");
                     Console.WriteLine();
+                    Console.WriteLine("--- Current Pets ---");
+                    Console.WriteLine();
 
                     fileIO.PrintCurrentPets();
 
@@ -124,6 +126,44 @@ namespace virtual_pet_age_tracker.Classes
                 while (loopAddPet)
                 {
                     loopAddPet = false;
+
+                    Console.Clear();
+                    Console.WriteLine($"---{{ Virtual Pet Age Tracker {versionNum} }}---");
+                    Console.WriteLine();
+                    Console.WriteLine("--- Add Pet ---");
+                    Console.WriteLine();
+
+                    Console.Write("Enter the pet's name: ");
+                    
+                    userInput = Console.ReadLine();
+                    string name = userInput;
+                    Console.WriteLine();
+
+                    Console.Write("Enter the type of virtual pet: ");
+
+                    userInput = Console.ReadLine();
+                    string petType = userInput;
+                    Console.WriteLine();
+
+                    Console.Write("Enter the pet's birthday: ");
+
+                    userInput = Console.ReadLine();
+                    string dateBirth = userInput;
+                    // Make sure to include a Try/Catch to handle non-DateOnly inputs
+                    Console.WriteLine();
+
+                    Console.Write("Enter the pet's time of birth using AM/PM or 24-hour format: ");
+                    // Make sure to include a Try/Catch to handle non-TimeOnly inputs
+
+                    userInput = Console.ReadLine();
+                    string timeBirth = userInput;
+                    Console.WriteLine();
+
+                    Pet newPet = new Pet(name, petType, dateBirth, timeBirth);
+                    fileIO.WritePet(newPet);
+
+                    // TODO: Write success message Try/Catch to catch exception messages
+
                     Console.Write("Press any key to return to the Main Menu.");
                     Console.ReadKey(true);
                 }
