@@ -24,9 +24,9 @@ namespace virtual_pet_age_tracker.Classes
             {
                 return Directory.GetFiles(directoryPath);
             }
-            catch (Exception)
+            catch (DirectoryNotFoundException)
             {
-                throw new Exception("ERROR: The directory where pets are saved is currently inaccessible.");
+                throw new DirectoryNotFoundException("ERROR: The directory where pets are saved is currently inaccessible.");
             }
         }
 
@@ -93,9 +93,9 @@ namespace virtual_pet_age_tracker.Classes
                         }
                     }
                 }
-                catch (Exception)
+                catch (DirectoryNotFoundException)
                 {
-                    throw new Exception("ERROR: The directory where pets are saved is currently inaccessible.");
+                    throw new DirectoryNotFoundException("ERROR: The directory where pets are saved is currently inaccessible.");
                 }
 
                 return currentPets;
@@ -117,28 +117,28 @@ namespace virtual_pet_age_tracker.Classes
             if (!currentPets.ContainsKey(petNameLower))
             {
                 currentPets.Add(petNameLower, pet);
+
+                DateOnly dateBirth = DateOnly.FromDateTime(pet.Birthday);
+                TimeOnly timeBirth = TimeOnly.FromDateTime(pet.Birthday);
+
+                try
+                {
+                    using (StreamWriter sw = new StreamWriter(filePath))
+                    {
+                        sw.WriteLine(pet.Name);
+                        sw.WriteLine(pet.PetType);
+                        sw.WriteLine(dateBirth);
+                        sw.WriteLine(timeBirth);
+                    }
+                }
+                catch (IOException)
+                {
+                    throw new IOException("ERROR: There was an issue writing the pet file.");
+                }
             }
             else
             {
-                throw new Exception("ERROR: The specified pet already exists.");
-            }
-
-            DateOnly dateBirth = DateOnly.FromDateTime(pet.Birthday);
-            TimeOnly timeBirth = TimeOnly.FromDateTime(pet.Birthday);
-
-            try
-            {
-                using (StreamWriter sw = new StreamWriter(filePath))
-                {
-                    sw.WriteLine(pet.Name);
-                    sw.WriteLine(pet.PetType);
-                    sw.WriteLine(dateBirth);
-                    sw.WriteLine(timeBirth);
-                }
-            }
-            catch (Exception)
-            {
-                throw new Exception("ERROR: There was an issue writing the pet file.");
+                throw new FileLoadException("ERROR: The specified pet already exists.");
             }
 
             return currentPets.ContainsKey(petNameLower);
@@ -164,12 +164,12 @@ namespace virtual_pet_age_tracker.Classes
                 }
                 else
                 {
-                    throw new Exception("ERROR: The specified pet does not exist.");
+                    throw new FileNotFoundException("ERROR: The specified pet does not exist.");
                 }
             }
-            catch (Exception)
+            catch (DirectoryNotFoundException)
             {
-                throw new Exception("ERROR: The directory where pets are saved is currently inaccessible.");
+                throw new DirectoryNotFoundException("ERROR: The directory where pets are saved is currently inaccessible.");
             }
 
             return !currentPets.ContainsKey(petNameLower);
