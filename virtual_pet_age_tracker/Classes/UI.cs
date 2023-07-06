@@ -38,7 +38,7 @@ namespace virtual_pet_age_tracker.Classes
 
                 string userInput = Console.ReadLine();
 
-                while (userInput == null)
+                while (userInput == null || userInput == "")
                 {
                     Console.Clear();
                     Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
@@ -121,14 +121,17 @@ namespace virtual_pet_age_tracker.Classes
 
                 while (loopAddPet)
                 {
+                    // TODO: Create logic to to cancel pet creation (should break out of loop)
+                    
                     loopAddPet = false;
 
                     Console.Clear();
                     Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
                     Console.WriteLine();
-                    Console.WriteLine("--- Add Pet ---");
+                    Console.WriteLine("--- Add Pet or [~] to Cancel ---");
                     Console.WriteLine();
                     Console.Write("Enter the pet's name: ");
+                    
                     userInput = Console.ReadLine();
                     string name = userInput;
                     Console.WriteLine();
@@ -138,9 +141,10 @@ namespace virtual_pet_age_tracker.Classes
                         Console.Clear();
                         Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
                         Console.WriteLine();
-                        Console.WriteLine("--- Add Pet ---");
                         Console.WriteLine("[UNIT TYPE INVALID]");
+                        Console.WriteLine();
                         Console.Write($"Enter the pet's name: ");
+                        
                         userInput = Console.ReadLine();
                         Console.WriteLine();
                     }
@@ -148,9 +152,10 @@ namespace virtual_pet_age_tracker.Classes
                     Console.Clear();
                     Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
                     Console.WriteLine();
-                    Console.WriteLine("--- Add Pet ---");
+                    Console.WriteLine("--- Add Pet or [~] to Cancel ---");
                     Console.WriteLine();
                     Console.Write("Enter the type of pet: ");
+                    
                     userInput = Console.ReadLine();
                     string petType = userInput;
                     Console.WriteLine();
@@ -160,9 +165,10 @@ namespace virtual_pet_age_tracker.Classes
                         Console.Clear();
                         Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
                         Console.WriteLine();
-                        Console.WriteLine("--- Add Pet ---");
                         Console.WriteLine("[UNIT TYPE INVALID]");
+                        Console.WriteLine();
                         Console.Write($"Enter the type of pet: ");
+                        
                         userInput = Console.ReadLine();
                         Console.WriteLine();
                     }
@@ -170,9 +176,10 @@ namespace virtual_pet_age_tracker.Classes
                     Console.Clear();
                     Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
                     Console.WriteLine();
-                    Console.WriteLine("--- Add Pet ---");
+                    Console.WriteLine("--- Add Pet or [~] to Cancel ---");
                     Console.WriteLine();
                     Console.Write("Is today your pet's birthday? [Y/N]: ");
+                    
                     string userInput_YN = Console.ReadLine();
 
                     while (userInput_YN == null || userInput == "")
@@ -180,8 +187,8 @@ namespace virtual_pet_age_tracker.Classes
                         Console.Clear();
                         Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
                         Console.WriteLine();
-                        Console.WriteLine("--- Add Pet ---");
                         Console.WriteLine("[UNIT TYPE INVALID]");
+                        Console.WriteLine();
                         Console.Write("Is today your pet's birthday? [Y/N]: ");
                         Console.WriteLine();
 
@@ -195,8 +202,8 @@ namespace virtual_pet_age_tracker.Classes
                         Console.Clear();
                         Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
                         Console.WriteLine();
-                        Console.WriteLine("--- Add Pet ---");
                         Console.WriteLine("[INVALID INPUT]");
+                        Console.WriteLine();
                         Console.Write("Is today your pet's birthday? [Y/N]: ");
                         Console.WriteLine();
 
@@ -224,9 +231,10 @@ namespace virtual_pet_age_tracker.Classes
                         Console.Clear();
                         Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
                         Console.WriteLine();
-                        Console.WriteLine("--- Add Pet ---");
+                        Console.WriteLine("--- Add Pet or [~] to Cancel ---");
                         Console.WriteLine();
                         Console.Write("Enter the pet's birthday: ");
+                        
                         userInput = Console.ReadLine();
 
                         while (userInput == null || userInput == "")
@@ -234,9 +242,10 @@ namespace virtual_pet_age_tracker.Classes
                             Console.Clear();
                             Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
                             Console.WriteLine();
-                            Console.WriteLine("--- Add Pet ---");
                             Console.WriteLine("[UNIT TYPE INVALID]");
+                            Console.WriteLine();
                             Console.Write("Enter the pet's birthday: ");
+                            
                             userInput = Console.ReadLine();
                         }
 
@@ -245,10 +254,10 @@ namespace virtual_pet_age_tracker.Classes
                             Console.Clear();
                             Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
                             Console.WriteLine();
-                            Console.WriteLine("--- Add Pet ---");
                             Console.WriteLine("[INVALID FORMAT]");
+                            Console.WriteLine();
                             Console.Write("Enter the pet's birthday: ");
-
+                            
                             userInput = Console.ReadLine();
                         }
 
@@ -258,9 +267,10 @@ namespace virtual_pet_age_tracker.Classes
                         Console.Clear();
                         Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
                         Console.WriteLine();
-                        Console.WriteLine("--- Add Pet ---");
+                        Console.WriteLine("--- Add Pet or [~] to Cancel ---");
                         Console.WriteLine();
                         Console.Write("Enter the pet's time of birth using AM/PM or 24-hour format: ");
+
                         userInput = Console.ReadLine();
 
                         while (userInput == null || userInput == "")
@@ -268,8 +278,8 @@ namespace virtual_pet_age_tracker.Classes
                             Console.Clear();
                             Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
                             Console.WriteLine();
-                            Console.WriteLine("--- Add Pet ---");
                             Console.WriteLine("[UNIT TYPE INVALID]");
+                            Console.WriteLine();
                             Console.Write("Enter the pet's time of birth using AM/PM or 24-hour format: ");
 
                             userInput = Console.ReadLine();
@@ -280,8 +290,8 @@ namespace virtual_pet_age_tracker.Classes
                             Console.Clear();
                             Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
                             Console.WriteLine();
-                            Console.WriteLine("--- Add Pet ---");
                             Console.WriteLine("[INVALID FORMAT]");
+                            Console.WriteLine();
                             Console.Write("Enter the pet's time of birth using AM/PM or 24-hour format: ");
 
                             userInput = Console.ReadLine();
