@@ -133,10 +133,8 @@ namespace virtual_pet_age_tracker.Classes
                     Console.Write("Enter the pet's name: ");
                     
                     userInput = Console.ReadLine();
-                    string name = userInput;
-                    Console.WriteLine();
                     
-                    while (userInput == null || userInput == "")
+                    while (userInput == null || userInput == "" || userInput == " ")
                     {
                         Console.Clear();
                         Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
@@ -146,8 +144,9 @@ namespace virtual_pet_age_tracker.Classes
                         Console.Write($"Enter the pet's name: ");
                         
                         userInput = Console.ReadLine();
-                        Console.WriteLine();
                     }
+
+                    string name = userInput;
                     
                     Console.Clear();
                     Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
@@ -157,10 +156,8 @@ namespace virtual_pet_age_tracker.Classes
                     Console.Write("Enter the type of pet: ");
                     
                     userInput = Console.ReadLine();
-                    string petType = userInput;
-                    Console.WriteLine();
 
-                    while (userInput == null || userInput == "")
+                    while (userInput == null || userInput == "" || userInput == " ")
                     {
                         Console.Clear();
                         Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
@@ -170,8 +167,9 @@ namespace virtual_pet_age_tracker.Classes
                         Console.Write($"Enter the type of pet: ");
                         
                         userInput = Console.ReadLine();
-                        Console.WriteLine();
                     }
+
+                    string petType = userInput;
 
                     Console.Clear();
                     Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
@@ -182,7 +180,7 @@ namespace virtual_pet_age_tracker.Classes
                     
                     string userInput_YN = Console.ReadLine();
 
-                    while (userInput_YN == null || userInput == "")
+                    while (userInput_YN == null || userInput == "" || userInput == " ")
                     {
                         Console.Clear();
                         Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
@@ -237,7 +235,7 @@ namespace virtual_pet_age_tracker.Classes
                         
                         userInput = Console.ReadLine();
 
-                        while (userInput == null || userInput == "")
+                        while (userInput == null || userInput == "" || userInput == " ")
                         {
                             Console.Clear();
                             Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
@@ -262,7 +260,6 @@ namespace virtual_pet_age_tracker.Classes
                         }
 
                         dateBirth = userInput;
-                        Console.WriteLine();
 
                         Console.Clear();
                         Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
@@ -273,7 +270,7 @@ namespace virtual_pet_age_tracker.Classes
 
                         userInput = Console.ReadLine();
 
-                        while (userInput == null || userInput == "")
+                        while (userInput == null || userInput == "" || userInput == " ")
                         {
                             Console.Clear();
                             Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
@@ -298,10 +295,10 @@ namespace virtual_pet_age_tracker.Classes
                         }
 
                         timeBirth = userInput;
-                        Console.WriteLine();
 
                         Pet newPet = new Pet(name, petType, dateBirth, timeBirth);
                         fileIO.WritePet(newPet);
+                        Console.WriteLine();
                     }
 
                     // TODO: Write success message and Try/Catch to catch exception messages
