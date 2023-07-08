@@ -121,8 +121,6 @@ namespace virtual_pet_age_tracker.Classes
 
                 while (loopAddPet)
                 {
-                    // TODO: Create logic to to cancel pet creation (should break out of loop)
-                    
                     loopAddPet = false;
 
                     Console.Clear();
@@ -131,10 +129,19 @@ namespace virtual_pet_age_tracker.Classes
                     Console.WriteLine("--- Add Pet or [~] to Cancel ---");
                     Console.WriteLine();
                     Console.Write("Enter the pet's name: ");
-                    
+
                     userInput = Console.ReadLine();
-                    
-                    while (userInput == null || userInput == "" || userInput == " ")
+
+                    if (userInput == "~")
+                    {
+                        Console.WriteLine();
+                        Console.Write("Press any key to return to the Main Menu.");
+                        Console.ReadKey(true);
+
+                        break;
+                    }
+
+                    while (userInput == null || userInput == "" || userInput.StartsWith(" "))
                     {
                         Console.Clear();
                         Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
@@ -142,22 +149,31 @@ namespace virtual_pet_age_tracker.Classes
                         Console.WriteLine("[UNIT TYPE INVALID]");
                         Console.WriteLine();
                         Console.Write($"Enter the pet's name: ");
-                        
+
                         userInput = Console.ReadLine();
                     }
 
                     string name = userInput;
-                    
+
                     Console.Clear();
                     Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
                     Console.WriteLine();
                     Console.WriteLine("--- Add Pet or [~] to Cancel ---");
                     Console.WriteLine();
                     Console.Write("Enter the type of pet: ");
-                    
+
                     userInput = Console.ReadLine();
 
-                    while (userInput == null || userInput == "" || userInput == " ")
+                    if (userInput == "~")
+                    {
+                        Console.WriteLine();
+                        Console.Write("Press any key to return to the Main Menu.");
+                        Console.ReadKey(true);
+
+                        break;
+                    }
+
+                    while (userInput == null || userInput == "" || userInput.StartsWith(" "))
                     {
                         Console.Clear();
                         Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
@@ -165,7 +181,7 @@ namespace virtual_pet_age_tracker.Classes
                         Console.WriteLine("[UNIT TYPE INVALID]");
                         Console.WriteLine();
                         Console.Write($"Enter the type of pet: ");
-                        
+
                         userInput = Console.ReadLine();
                     }
 
@@ -177,10 +193,19 @@ namespace virtual_pet_age_tracker.Classes
                     Console.WriteLine("--- Add Pet or [~] to Cancel ---");
                     Console.WriteLine();
                     Console.Write("Is today your pet's birthday? [Y/N]: ");
-                    
+
                     string userInput_YN = Console.ReadLine();
 
-                    while (userInput_YN == null || userInput == "" || userInput == " ")
+                    if (userInput == "~")
+                    {
+                        Console.WriteLine();
+                        Console.Write("Press any key to return to the Main Menu.");
+                        Console.ReadKey(true);
+
+                        break;
+                    }
+
+                    while (userInput_YN == null || userInput == "" || userInput.StartsWith(" "))
                     {
                         Console.Clear();
                         Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
@@ -188,7 +213,6 @@ namespace virtual_pet_age_tracker.Classes
                         Console.WriteLine("[UNIT TYPE INVALID]");
                         Console.WriteLine();
                         Console.Write("Is today your pet's birthday? [Y/N]: ");
-                        Console.WriteLine();
 
                         userInput_YN = Console.ReadLine();
                     }
@@ -203,7 +227,6 @@ namespace virtual_pet_age_tracker.Classes
                         Console.WriteLine("[INVALID INPUT]");
                         Console.WriteLine();
                         Console.Write("Is today your pet's birthday? [Y/N]: ");
-                        Console.WriteLine();
 
                         userInput_YN = Console.ReadLine();
                         userInputLower = userInput_YN.ToLower();
@@ -222,7 +245,6 @@ namespace virtual_pet_age_tracker.Classes
 
                         Pet newPet = new Pet(name, petType, dateBirth, timeBirth);
                         fileIO.WritePet(newPet);
-                        Console.WriteLine();
                     }
                     else
                     {
@@ -232,10 +254,19 @@ namespace virtual_pet_age_tracker.Classes
                         Console.WriteLine("--- Add Pet or [~] to Cancel ---");
                         Console.WriteLine();
                         Console.Write("Enter the pet's birthday: ");
-                        
+
                         userInput = Console.ReadLine();
 
-                        while (userInput == null || userInput == "" || userInput == " ")
+                        if (userInput == "~")
+                        {
+                            Console.WriteLine();
+                            Console.Write("Press any key to return to the Main Menu.");
+                            Console.ReadKey(true);
+
+                            break;
+                        }
+
+                        while (userInput == null || userInput == "" || userInput.StartsWith(" "))
                         {
                             Console.Clear();
                             Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
@@ -243,7 +274,7 @@ namespace virtual_pet_age_tracker.Classes
                             Console.WriteLine("[UNIT TYPE INVALID]");
                             Console.WriteLine();
                             Console.Write("Enter the pet's birthday: ");
-                            
+
                             userInput = Console.ReadLine();
                         }
 
@@ -255,7 +286,7 @@ namespace virtual_pet_age_tracker.Classes
                             Console.WriteLine("[INVALID FORMAT]");
                             Console.WriteLine();
                             Console.Write("Enter the pet's birthday: ");
-                            
+
                             userInput = Console.ReadLine();
                         }
 
@@ -270,7 +301,16 @@ namespace virtual_pet_age_tracker.Classes
 
                         userInput = Console.ReadLine();
 
-                        while (userInput == null || userInput == "" || userInput == " ")
+                        if (userInput == "~")
+                        {
+                            Console.WriteLine();
+                            Console.Write("Press any key to return to the Main Menu.");
+                            Console.ReadKey(true);
+
+                            break;
+                        }
+
+                        while (userInput == null || userInput == "" || userInput.StartsWith(" "))
                         {
                             Console.Clear();
                             Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
@@ -298,11 +338,11 @@ namespace virtual_pet_age_tracker.Classes
 
                         Pet newPet = new Pet(name, petType, dateBirth, timeBirth);
                         fileIO.WritePet(newPet);
-                        Console.WriteLine();
                     }
 
                     // TODO: Write success message and Try/Catch to catch exception messages
 
+                    Console.WriteLine();
                     Console.Write("Press any key to return to the Main Menu.");
                     Console.ReadKey(true);
                 }
