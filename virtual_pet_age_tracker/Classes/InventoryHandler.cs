@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace virtual_pet_age_tracker.Classes
 {
-    public class FileIO
+    public class InventoryHandler
     {
         string directoryPath = ".\\Data\\";
         Dictionary<string, Pet> currentPets = new Dictionary<string, Pet>();
@@ -52,6 +52,8 @@ namespace virtual_pet_age_tracker.Classes
                 string timeBirth = null;
 
                 int lineCounter = 0;
+
+                // TODO: Breakout file reading into separate class so Database can be easily swapped in
 
                 try
                 {
