@@ -116,25 +116,16 @@ namespace virtual_pet_age_tracker.Classes
                 {
                     loopCurrentPets = false;
 
-                    try
-                    {
-                        Console.Clear();
-                        Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
-                        Console.WriteLine();
-                        Console.WriteLine("--- Current Pets ---");
+                    Console.Clear();
+                    Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
+                    Console.WriteLine();
+                    Console.WriteLine("--- Current Pets ---");
+                    Console.WriteLine();
 
-                        inventoryHandler.PrintCurrentPets();
-                    }
-                    catch (Exception currentPetsError)
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine(currentPetsError.Message);
-                    }
-                    finally
-                    {
-                        Console.Write("Press any key to return to the Main Menu.");
-                        Console.ReadKey(true);
-                    }
+                    inventoryHandler.PrintCurrentPets();
+
+                    Console.Write("Press any key to return to the Main Menu.");
+                    Console.ReadKey(true);
                 }
 
                 // Add Pet Menu
@@ -378,6 +369,8 @@ namespace virtual_pet_age_tracker.Classes
                     }
                     catch (Exception addPetError)
                     {
+                        Console.Clear();
+                        Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
                         Console.WriteLine();
                         Console.WriteLine(addPetError.Message);
                     }
