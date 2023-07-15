@@ -11,13 +11,12 @@ namespace virtual_pet_age_tracker.Classes
         public void CallUI()
         {
             UIHelper UIhelper = new UIHelper();
+            InventoryHandler inventoryHandler = new InventoryHandler();
 
             bool endProgram = false;
             bool loopCurrentPets = false;
             bool loopAddPet = false;
             bool loopRemovePet = false;
-
-            InventoryHandler inventoryHandler = new InventoryHandler();
 
             try
             {
@@ -34,18 +33,12 @@ namespace virtual_pet_age_tracker.Classes
 
             while (!endProgram)
             {
-                UIhelper.Header();
-                Console.WriteLine("--- Main Menu ---");
                 UIhelper.MainMenu();
-
                 string userInput = Console.ReadLine();
 
                 while (userInput == null || userInput == "")
                 {
-                    UIhelper.Header();
-                    Console.WriteLine("[UNIT TYPE INVALID]");
-                    UIhelper.MainMenu();
-
+                    UIhelper.MainMenuUnitInvalid();
                     userInput = Console.ReadLine();
                 }
 
@@ -56,11 +49,9 @@ namespace virtual_pet_age_tracker.Classes
                     && !userInputLower.StartsWith("r")
                     && !userInputLower.StartsWith("e"))
                 {
-                    UIhelper.Header();
-                    Console.WriteLine("[INVALID INPUT]");
-                    UIhelper.MainMenu();
-
+                    UIhelper.MainMenuInputInvalid();
                     userInput = Console.ReadLine();
+
                     userInputLower = userInput.ToLower();
                 }
 
@@ -89,11 +80,8 @@ namespace virtual_pet_age_tracker.Classes
                 {
                     loopCurrentPets = false;
 
-                    UIhelper.Header();
-                    Console.WriteLine("--- Current Pets ---");
-
+                    UIhelper.CurrentPetsMenu();
                     inventoryHandler.PrintCurrentPets();
-
                     UIhelper.ReturnToMainMenu();
                 }
 
@@ -105,10 +93,7 @@ namespace virtual_pet_age_tracker.Classes
 
                     try
                     {
-                        UIhelper.Header();
-                        UIhelper.CancelHeader();
-                        Console.Write("Enter the pet's name: ");
-
+                        UIhelper.EnterPetName();
                         userInput = Console.ReadLine();
 
                         if (userInput == "~")
@@ -118,20 +103,13 @@ namespace virtual_pet_age_tracker.Classes
 
                         while (userInput == null || userInput == "" || userInput.StartsWith(" "))
                         {
-                            UIhelper.Header();
-                            Console.WriteLine("[UNIT TYPE INVALID]");
-                            Console.WriteLine();
-                            Console.Write($"Enter the pet's name: ");
-
+                            UIhelper.EnterPetNameUnitInvalid();
                             userInput = Console.ReadLine();
                         }
 
                         string name = userInput;
 
-                        UIhelper.Header();
-                        UIhelper.CancelHeader();
-                        Console.Write("Enter the type of pet: ");
-
+                        UIhelper.EnterPetType();
                         userInput = Console.ReadLine();
 
                         if (userInput == "~")
@@ -141,20 +119,13 @@ namespace virtual_pet_age_tracker.Classes
 
                         while (userInput == null || userInput == "" || userInput.StartsWith(" "))
                         {
-                            UIhelper.Header();
-                            Console.WriteLine("[UNIT TYPE INVALID]");
-                            Console.WriteLine();
-                            Console.Write($"Enter the type of pet: ");
-
+                            UIhelper.EnterPetTypeUnitInvalid();
                             userInput = Console.ReadLine();
                         }
 
                         string petType = userInput;
 
-                        UIhelper.Header();
-                        UIhelper.CancelHeader();
-                        Console.Write("Is today your pet's birthday? [Y/N]: ");
-
+                        UIhelper.PetBirthdayToday();
                         string userInput_YN = Console.ReadLine();
 
                         if (userInput_YN == "~")
@@ -164,11 +135,7 @@ namespace virtual_pet_age_tracker.Classes
 
                         while (userInput_YN == null || userInput == "" || userInput.StartsWith(" "))
                         {
-                            UIhelper.Header();
-                            Console.WriteLine("[UNIT TYPE INVALID]");
-                            Console.WriteLine();
-                            Console.Write("Is today your pet's birthday? [Y/N]: ");
-
+                            UIhelper.PetBirthdayTodayUnitInvalid();
                             userInput_YN = Console.ReadLine();
                         }
 
@@ -176,12 +143,9 @@ namespace virtual_pet_age_tracker.Classes
 
                         while (!userInputLower.StartsWith("y") && !userInputLower.StartsWith("n"))
                         {
-                            UIhelper.Header();
-                            Console.WriteLine("[INVALID INPUT]");
-                            Console.WriteLine();
-                            Console.Write("Is today your pet's birthday? [Y/N]: ");
-
+                            UIhelper.PetBirthdayTodayInputInvalid();
                             userInput_YN = Console.ReadLine();
+
                             userInputLower = userInput_YN.ToLower();
                         }
 
@@ -203,10 +167,7 @@ namespace virtual_pet_age_tracker.Classes
                         }
                         else
                         {
-                            UIhelper.Header();
-                            UIhelper.CancelHeader();
-                            Console.Write("Enter the pet's birthday: ");
-
+                            UIhelper.EnterPetBirthday();
                             userInput = Console.ReadLine();
 
                             if (userInput == "~")
@@ -216,30 +177,19 @@ namespace virtual_pet_age_tracker.Classes
 
                             while (userInput == null || userInput == "" || userInput.StartsWith(" "))
                             {
-                                UIhelper.Header();
-                                Console.WriteLine("[UNIT TYPE INVALID]");
-                                Console.WriteLine();
-                                Console.Write("Enter the pet's birthday: ");
-
+                                UIhelper.EnterPetBirthdayUnitInvalid();
                                 userInput = Console.ReadLine();
                             }
 
                             while (!DateOnly.TryParse(userInput, out DateOnly tryResult))
                             {
-                                UIhelper.Header();
-                                Console.WriteLine("[INVALID FORMAT]");
-                                Console.WriteLine();
-                                Console.Write("Enter the pet's birthday: ");
-
+                                UIhelper.EnterPetBirthdayFormatInvalid();
                                 userInput = Console.ReadLine();
                             }
 
                             dateBirth = userInput;
 
-                            UIhelper.Header();
-                            UIhelper.CancelHeader();
-                            Console.Write("Enter the pet's time of birth using AM/PM or 24-hour format: ");
-
+                            UIhelper.EnterPetBirthTime();
                             userInput = Console.ReadLine();
 
                             if (userInput == "~")
@@ -249,21 +199,13 @@ namespace virtual_pet_age_tracker.Classes
 
                             while (userInput == null || userInput == "" || userInput.StartsWith(" "))
                             {
-                                UIhelper.Header();
-                                Console.WriteLine("[UNIT TYPE INVALID]");
-                                Console.WriteLine();
-                                Console.Write("Enter the pet's time of birth using AM/PM or 24-hour format: ");
-
+                                UIhelper.EnterPetBirthTimeUnitInvalid();
                                 userInput = Console.ReadLine();
                             }
 
                             while (!TimeOnly.TryParse(userInput, out TimeOnly tryResult))
                             {
-                                UIhelper.Header();
-                                Console.WriteLine("[INVALID FORMAT]");
-                                Console.WriteLine();
-                                Console.Write("Enter the pet's time of birth using AM/PM or 24-hour format: ");
-
+                                UIhelper.EnterPetBirthTimeFormatInvalid();
                                 userInput = Console.ReadLine();
                             }
 
