@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace virtual_pet_age_tracker.Classes
 {
-    public class UI_Helper
+    public class UIHelper
     {
         string versionNum = "version 0.1.0";
 
@@ -33,9 +33,9 @@ namespace virtual_pet_age_tracker.Classes
             Console.WriteLine();
             Console.Write("Press any key to return to the Main Menu.");
             Console.ReadKey(true);
-        }        
+        }
         
-        public void CancelAction()
+        public void CancelHeader()
         {
             Console.WriteLine("--- Add Pet or [~] to Cancel ---");
             Console.WriteLine();

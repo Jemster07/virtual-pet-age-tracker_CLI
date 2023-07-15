@@ -112,6 +112,7 @@ namespace virtual_pet_age_tracker.Classes
 
                         string estimatedAge = $"{yearCounter} year(s) and {ageDays} day(s) old";
 
+                        Console.WriteLine();
                         Console.WriteLine($"Name: {item.Value.Name}");
                         Console.WriteLine($"Pet Type: {item.Value.PetType}");
                         Console.WriteLine($"Birthday: {item.Value.Birthday}");
@@ -119,6 +120,7 @@ namespace virtual_pet_age_tracker.Classes
                     }
                     else
                     {
+                        Console.WriteLine();
                         Console.WriteLine($"Name: {item.Value.Name}");
                         Console.WriteLine($"Pet Type: {item.Value.PetType}");
                         Console.WriteLine($"Birthday: {item.Value.Birthday}");
@@ -128,8 +130,8 @@ namespace virtual_pet_age_tracker.Classes
             }
             else
             {
-                Console.WriteLine("There are no active pets.");
                 Console.WriteLine();
+                Console.WriteLine("There are no active pets.");
             }
         }
     }
