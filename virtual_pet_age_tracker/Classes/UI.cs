@@ -257,7 +257,9 @@ namespace virtual_pet_age_tracker.Classes
                             timeBirth = currentTime.ToString();
 
                             Pet newPet = new Pet(name, petType, dateBirth, timeBirth);
-                            inventoryHandler.WritePet(newPet);
+                            inventoryHandler.AddToDictionary(newPet);
+
+                            // TODO: Need to check for bool that confirms pet was added successfully
 
                             Console.WriteLine();
                             Console.WriteLine("Pet successfully added!");
@@ -357,7 +359,9 @@ namespace virtual_pet_age_tracker.Classes
                             timeBirth = userInput;
 
                             Pet newPet = new Pet(name, petType, dateBirth, timeBirth);
-                            inventoryHandler.WritePet(newPet);
+                            inventoryHandler.AddToDictionary(newPet);
+
+                            // TODO: Need to check for bool that confirms pet was added successfully
 
                             Console.WriteLine();
                             Console.WriteLine("Pet successfully added!");

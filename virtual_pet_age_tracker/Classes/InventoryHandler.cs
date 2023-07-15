@@ -9,134 +9,52 @@ namespace virtual_pet_age_tracker.Classes
 {
     public class InventoryHandler
     {
-        string directoryPath = ".\\Data\\";
+        FileIO fileIO = new FileIO();
         Dictionary<string, Pet> currentPets = new Dictionary<string, Pet>();
 
         /// <summary>
-        /// Checks the input directory path for existing files.
-        /// An empty directory will return a Length of 0.
-        /// </summary>
-        /// <returns>String Array containing file paths.</returns>
-        /// <exception cref="Exception"></exception>
-        public string[] ReadDirectory()
-        {
-            try
-            {
-                return Directory.GetFiles(directoryPath);
-            }
-            catch (DirectoryNotFoundException)
-            {
-                throw new DirectoryNotFoundException("ERROR: The directory where pets are saved is currently inaccessible.");
-            }
-        }
-
-        /// <summary>
-        /// Reads all files in a given directory and writes their contents to the properties of a Pet Object.
-        /// Adds the generated Pet Objects to a Dictionary, using the lowercase Name property as the Key.
+        /// Generates a Dictionary containing Pet Objects, using the lowercase Name property as the Key.
         /// </summary>
         /// <returns>Dictionary containing Pet Objects.</returns>
         /// <exception cref="Exception"></exception>
         public Dictionary<string, Pet> GeneratePetDictionary()
         {
-            string[] readPets = ReadDirectory();
+            string[] pathArray = fileIO.ReadDirectory();
 
-            if (readPets.Length == 0)
+            if (pathArray.Length == 0)
             {
                 return currentPets;
             }
             else
             {
-                string name = null;
-                string petType = null;
-                string dateBirth = null;
-                string timeBirth = null;
-
-                int lineCounter = 0;
-
-                // TODO: Breakout file reading into separate class so Database can be easily swapped in
-
-                try
+                foreach (string filePath in pathArray)
                 {
-                    foreach (string item in readPets)
-                    {
-                        using (StreamReader sr = new StreamReader(item))
-                        {
-                            while (!sr.EndOfStream)
-                            {
-                                string line = sr.ReadLine();
+                    Pet pet = fileIO.ReadPet(filePath);
 
-                                if (lineCounter == 0)
-                                {
-                                    name = line;
-                                    lineCounter++;
-                                }
-                                else if (lineCounter == 1)
-                                {
-                                    petType = line;
-                                    lineCounter++;
-                                }
-                                else if (lineCounter == 2)
-                                {
-                                    dateBirth = line;
-                                    lineCounter++;
-                                }
-                                else // lineCounter == 3
-                                {
-                                    timeBirth = line;
-                                    lineCounter = 0;
-                                }
-                            }
+                    string petNameLower = pet.Name.ToLower();
 
-                            Pet pet = new Pet(name, petType, dateBirth, timeBirth);
-
-                            string petNameLower = pet.Name.ToLower();
-
-                            currentPets.Add(petNameLower, pet);
-                        }
-                    }
+                    currentPets.Add(petNameLower, pet);
                 }
-                catch (DirectoryNotFoundException)
-                {
-                    throw new DirectoryNotFoundException("ERROR: The directory where pets are saved is currently inaccessible.");
-                }
-
-                return currentPets;
             }
+
+            return currentPets;
         }
 
         /// <summary>
-        /// Creates a new file in the directory using a Pet Object.
-        /// Adds the Pet Object to a Dictionary, using the lowercase Name property as the Key.
+        /// Adds the Pet Object to the Dictionary, using the lowercase Name property as the Key.
         /// </summary>
         /// <param name="pet"></param>
         /// <returns>Bool indicating if the Dictionary contains the newly created Pet Object.</returns>
         /// <exception cref="Exception"></exception>
-        public bool WritePet(Pet pet)
+        public bool AddToDictionary(Pet pet)
         {
-            string filePath = $"{directoryPath}{pet.Name}.txt";
             string petNameLower = pet.Name.ToLower();
 
             if (!currentPets.ContainsKey(petNameLower))
             {
+                fileIO.WritePet(pet);
+
                 currentPets.Add(petNameLower, pet);
-
-                DateOnly dateBirth = DateOnly.FromDateTime(pet.Birthday);
-                TimeOnly timeBirth = TimeOnly.FromDateTime(pet.Birthday);
-
-                try
-                {
-                    using (StreamWriter sw = new StreamWriter(filePath))
-                    {
-                        sw.WriteLine(pet.Name);
-                        sw.WriteLine(pet.PetType);
-                        sw.WriteLine(dateBirth);
-                        sw.WriteLine(timeBirth);
-                    }
-                }
-                catch (IOException)
-                {
-                    throw new IOException("ERROR: There was an issue writing the pet file.");
-                }
             }
             else
             {
@@ -147,31 +65,24 @@ namespace virtual_pet_age_tracker.Classes
         }
 
         /// <summary>
-        /// Removes the given Pet Object from the Dictionary and deletes the associated file from the directory.
+        /// Removes the given Pet Object from the Dictionary.
         /// </summary>
         /// <param name="pet"></param>
         /// <returns>Bool indicating if the Dictionary no longer contains the deleted Pet Object.</returns>
         /// <exception cref="Exception"></exception>
-        public bool DeletePet(Pet pet)
+        public bool DeleteFromDictionary(Pet pet)
         {
-            string filePath = $"{directoryPath}{pet.Name}.txt";
             string petNameLower = pet.Name.ToLower();
 
-            try
+            if (currentPets.ContainsKey(petNameLower))
             {
-                if (File.Exists(filePath))
-                {
-                    currentPets.Remove(petNameLower);
-                    File.Delete(filePath);
-                }
-                else
-                {
-                    throw new FileNotFoundException("ERROR: The specified pet does not exist.");
-                }
+                fileIO.DeletePet(pet);
+                
+                currentPets.Remove(petNameLower);
             }
-            catch (DirectoryNotFoundException)
+            else
             {
-                throw new DirectoryNotFoundException("ERROR: The directory where pets are saved is currently inaccessible.");
+                throw new KeyNotFoundException("ERROR: The specified pet does not exist.");
             }
 
             return !currentPets.ContainsKey(petNameLower);
