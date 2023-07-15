@@ -124,6 +124,7 @@ namespace virtual_pet_age_tracker.Classes
 
                     inventoryHandler.PrintCurrentPets();
 
+                    Console.WriteLine();
                     Console.Write("Press any key to return to the Main Menu.");
                     Console.ReadKey(true);
                 }
@@ -259,8 +260,6 @@ namespace virtual_pet_age_tracker.Classes
                             Pet newPet = new Pet(name, petType, dateBirth, timeBirth);
                             inventoryHandler.AddToDictionary(newPet);
 
-                            // TODO: Need to check for bool that confirms pet was added successfully
-
                             Console.WriteLine();
                             Console.WriteLine("Pet successfully added!");
                             Console.WriteLine();
@@ -360,8 +359,6 @@ namespace virtual_pet_age_tracker.Classes
 
                             Pet newPet = new Pet(name, petType, dateBirth, timeBirth);
                             inventoryHandler.AddToDictionary(newPet);
-
-                            // TODO: Need to check for bool that confirms pet was added successfully
 
                             Console.WriteLine();
                             Console.WriteLine("Pet successfully added!");

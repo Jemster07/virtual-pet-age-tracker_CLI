@@ -116,7 +116,6 @@ namespace virtual_pet_age_tracker.Classes
                         Console.WriteLine($"Pet Type: {item.Value.PetType}");
                         Console.WriteLine($"Birthday: {item.Value.Birthday}");
                         Console.WriteLine($"Age: {estimatedAge}");
-                        Console.WriteLine();
                     }
                     else
                     {
@@ -124,7 +123,6 @@ namespace virtual_pet_age_tracker.Classes
                         Console.WriteLine($"Pet Type: {item.Value.PetType}");
                         Console.WriteLine($"Birthday: {item.Value.Birthday}");
                         Console.WriteLine($"Age: {age.Days} day(s) old");
-                        Console.WriteLine();
                     }
                 }
             }
