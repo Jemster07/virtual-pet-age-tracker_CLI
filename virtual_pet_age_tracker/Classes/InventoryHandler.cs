@@ -70,14 +70,15 @@ namespace virtual_pet_age_tracker.Classes
         /// <param name="pet"></param>
         /// <returns>Bool indicating if the Dictionary no longer contains the deleted Pet Object.</returns>
         /// <exception cref="Exception"></exception>
-        public bool DeleteFromDictionary(Pet pet)
+        public bool DeleteFromDictionary(string petName)
         {
-            string petNameLower = pet.Name.ToLower();
+            string petNameLower = petName.ToLower();
 
             if (currentPets.ContainsKey(petNameLower))
             {
-                fileIO.DeletePet(pet);
+                Pet pet = currentPets[petNameLower];
                 
+                fileIO.DeletePet(pet);               
                 currentPets.Remove(petNameLower);
             }
             else
