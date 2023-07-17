@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -116,7 +117,7 @@ namespace virtual_pet_age_tracker.Classes
                         Console.WriteLine();
                         Console.WriteLine($"Name: {item.Value.Name}");
                         Console.WriteLine($"Pet Type: {item.Value.PetType}");
-                        Console.WriteLine($"Birthday: {item.Value.Birthday}");
+                        Console.WriteLine($"Birthday: {item.Value.Birthday.ToString("g", CultureInfo.CreateSpecificCulture("en-us"))}");
                         Console.WriteLine($"Age: {estimatedAge}");
                     }
                     else
@@ -124,7 +125,7 @@ namespace virtual_pet_age_tracker.Classes
                         Console.WriteLine();
                         Console.WriteLine($"Name: {item.Value.Name}");
                         Console.WriteLine($"Pet Type: {item.Value.PetType}");
-                        Console.WriteLine($"Birthday: {item.Value.Birthday}");
+                        Console.WriteLine($"Birthday: {item.Value.Birthday.ToString("g", CultureInfo.CreateSpecificCulture("en-us"))}");
                         Console.WriteLine($"Age: {age.Days} day(s) old");
                     }
                 }

@@ -80,9 +80,6 @@ namespace virtual_pet_age_tracker.Classes
 
                 while (loopCurrentPets)
                 {
-                    // TODO: Figure out a way to count how many lines are printed to screen
-                    // when the print current pets menu is triggered
-
                     loopCurrentPets = false;
 
                     UIhelper.CurrentPetsMenu();
