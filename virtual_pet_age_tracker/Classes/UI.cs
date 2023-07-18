@@ -264,33 +264,17 @@ namespace virtual_pet_age_tracker.Classes
 
                 while (loopRemovePet)
                 {
-                    // TODO: Implement UIHelper methods to clean up Console.WriteLine code
-
                     loopRemovePet = false;
                     bool showUI = true;
 
-                    string versionNum = "version 0.1.0";
-
                     try
                     {
-                        Console.Clear();
-                        Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
-                        Console.WriteLine();
-                        Console.WriteLine("--- Delete Pet or [~] to Cancel ---");
-                        Console.WriteLine();
-                        Console.Write("What is the name of the pet that you want to delete? ");
-
+                        UIhelper.PetToDelete();
                         userInput = Console.ReadLine();
 
                         while (userInput == null || userInput == "" || userInput.StartsWith(" "))
                         {
-                            Console.Clear();
-                            Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
-                            Console.WriteLine();
-                            Console.WriteLine("[UNIT TYPE INVALID]");
-                            Console.WriteLine();
-                            Console.Write("What is the name of the pet that you want to delete? ");
-
+                            UIhelper.PetToDeleteUnitInvalid();
                             userInput = Console.ReadLine();
                         }
 
@@ -301,32 +285,12 @@ namespace virtual_pet_age_tracker.Classes
 
                         string petName = userInput;
 
-                        Console.Clear();
-                        Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
-                        Console.WriteLine();
-                        Console.WriteLine("--- Delete Pet or [~] to Cancel ---");
-                        Console.WriteLine();
-                        Console.WriteLine("WARNING: Deleting a pet is PERMANENT and cannot be undone!");
-                        Console.WriteLine();
-                        Console.WriteLine($"Are you sure you want to delete {petName}?");
-                        Console.WriteLine();
-                        Console.Write("Choose wisely [Y/N]: ");
-
+                        UIhelper.DeleteConfirm(petName);
                         userInput = Console.ReadLine();
 
                         while (userInput == null || userInput == "" || userInput.StartsWith(" "))
                         {
-                            Console.Clear();
-                            Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
-                            Console.WriteLine();
-                            Console.WriteLine("[UNIT TYPE INVALID]");
-                            Console.WriteLine();
-                            Console.WriteLine("WARNING: Deleting a pet is PERMANENT and cannot be undone!");
-                            Console.WriteLine();
-                            Console.WriteLine($"Are you sure you want to delete {petName}?");
-                            Console.WriteLine();
-                            Console.Write("Choose wisely [Y/N]: ");
-
+                            UIhelper.DeleteConfirmUnitInvalid(petName);
                             userInput = Console.ReadLine();
                         }
 
@@ -339,17 +303,7 @@ namespace virtual_pet_age_tracker.Classes
 
                         while (!userInputLower.StartsWith("y") && !userInputLower.StartsWith("n"))
                         {
-                            Console.Clear();
-                            Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
-                            Console.WriteLine();
-                            Console.WriteLine("[INVALID INPUT]");
-                            Console.WriteLine();
-                            Console.WriteLine("WARNING: Deleting a pet is PERMANENT and cannot be undone!");
-                            Console.WriteLine();
-                            Console.WriteLine($"Are you sure you want to delete {petName}?");
-                            Console.WriteLine();
-                            Console.Write("Choose wisely [Y/N]: ");
-
+                            UIhelper.DeleteConfirmInputInvalid(petName);
                             userInput = Console.ReadLine();
 
                             if (userInput == "~")
@@ -373,28 +327,12 @@ namespace virtual_pet_age_tracker.Classes
                         {
                             inventoryHandler.DeleteFromDictionary(petName);
 
-                            Console.Clear();
-                            Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
-                            Console.WriteLine();
-                            Console.WriteLine("--- Delete Pet or [~] to Cancel ---");
-                            Console.WriteLine();
-                            Console.WriteLine("Pet successfully deleted!");
-                            Console.WriteLine();
-                            Console.Write("Would you like to delete another pet? [Y/N]: ");
-
+                            UIhelper.PetDeleteSuccess();
                             userInput = Console.ReadLine();
 
                             while (userInput == null || userInput == "" || userInput.StartsWith(" "))
                             {
-                                Console.Clear();
-                                Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
-                                Console.WriteLine();
-                                Console.WriteLine("--- Delete Pet or [~] to Cancel ---");
-                                Console.WriteLine();
-                                Console.WriteLine("[UNIT TYPE INVALID]");
-                                Console.WriteLine();
-                                Console.Write("Would you like to delete another pet? [Y/N]: ");
-
+                                UIhelper.PetDeleteSuccessUnitInvalid();
                                 userInput = Console.ReadLine();
                             }
 
@@ -407,15 +345,7 @@ namespace virtual_pet_age_tracker.Classes
 
                             while (!userInputLower.StartsWith("y") && !userInputLower.StartsWith("n"))
                             {
-                                Console.Clear();
-                                Console.WriteLine($"---{{ Pet Age Tracker {versionNum} }}---");
-                                Console.WriteLine();
-                                Console.WriteLine("--- Delete Pet or [~] to Cancel ---");
-                                Console.WriteLine();
-                                Console.WriteLine("[INVALID INPUT]");
-                                Console.WriteLine();
-                                Console.Write("Would you like to delete another pet? [Y/N]: ");
-
+                                UIhelper.PetDeleteSuccessInputInvalid();
                                 userInput = Console.ReadLine();
 
                                 if (userInput == "~")

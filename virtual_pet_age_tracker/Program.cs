@@ -11,6 +11,9 @@ namespace virtual_pet_age_tracker
     {
         static void Main(string[] args)
         {
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Gray;
+
             UI RunProgram = new UI();
             RunProgram.CallUI();
             return;
