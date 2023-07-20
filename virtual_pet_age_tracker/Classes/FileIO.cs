@@ -20,7 +20,7 @@ namespace virtual_pet_age_tracker.Classes
         {
             try
             {
-                while (!Directory.Exists(directoryPath))
+                if (!Directory.Exists(directoryPath))
                 {
                     Directory.CreateDirectory(directoryPath);
                 }
