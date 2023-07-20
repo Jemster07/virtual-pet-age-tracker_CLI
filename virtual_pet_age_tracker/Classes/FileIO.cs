@@ -20,6 +20,11 @@ namespace virtual_pet_age_tracker.Classes
         {
             try
             {
+                while (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+
                 return Directory.GetFiles(directoryPath);
             }
             catch (DirectoryNotFoundException)
