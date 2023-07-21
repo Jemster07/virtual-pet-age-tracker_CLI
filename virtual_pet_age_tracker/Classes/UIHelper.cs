@@ -9,7 +9,7 @@ namespace virtual_pet_age_tracker.Classes
 {
     public class UIHelper
     {
-        string versionNum = "version 0.1.0";
+        string versionNum = "version 1.0.0";
 
         public void Header()
         {

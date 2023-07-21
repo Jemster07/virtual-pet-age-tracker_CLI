@@ -8,7 +8,11 @@ namespace virtual_pet_age_tracker.Classes
 {
     public class FileIO
     {
-        string directoryPath = ".\\Data\\";
+        // Use this directory variable for Windows compatibility
+        //string directoryPath = ".\\Data\\";
+
+        // Use this directory variable for MacOS/Unix compatibility
+        string directoryPath = "./Data/";
 
         /// <summary>
         /// Checks the input directory path for existing files.
