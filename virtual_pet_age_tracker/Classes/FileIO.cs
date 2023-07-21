@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,10 +10,10 @@ namespace virtual_pet_age_tracker.Classes
     public class FileIO
     {
         // Use this directory variable for Windows compatibility
-        //string directoryPath = ".\\Data\\";
+        string directoryPath = ".\\Data\\";
 
         // Use this directory variable for MacOS/Unix compatibility
-        string directoryPath = "./Data/";
+        //string directoryPath = "./Data/";
 
         /// <summary>
         /// Checks the input directory path for existing files.
