@@ -1,0 +1,1 @@
+cmd.exe /k "cd /d "./Virtual Pet Age Tracker/" & start virtual_pet_age_tracker.exe"
