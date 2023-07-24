@@ -18,8 +18,17 @@ Because the app follows the traditional passage of time (days = days, years = ye
     - Windows: try using __VPAT_win-x86__ first, then __VPAT_win-x64__ if the former behaves inappropriately
 - UnZIP the file and place its contents wherever you keep your favorite applications. _(ex. Documents, Desktop, Applications, OneDrive, etc.)_ __Make sure to keep the file structure intact.__
 - Double click the script file, named __VPAT-Launcher.__ This is what launches the program.
+    - The __VPAT_win-x86__ version does not use a script file to launch. Double click the __.exe__ file to launch the program.
 - Create a shortcut to the __VPAT-Launcher__ and place it anywhere you'd like for easy access.
     - To create a shortcut, right click the __VPAT-Launcher__ file and select _Make Alias_ on MacOS or _Create Shortcut_ on Windows.
+    - The __VPAT_win-x86__ version does not use a script file to launch. Create a shortcut that points to the __.exe__ file.
+
+### MacOS Users
+While trying to launch the app, you will encounter several security warnings that instruct you to contact the app developer. Please refer to the support article below on how to resolve these warnings.
+
+[https://support.apple.com/guide/mac-help/apple-cant-check-app-for-malicious-software-mchleab3a043/mac](url)
+
+I tested the "Open Anyway" method in the "Privacy & Security" settings and that worked for me, though several files require individual approval.  I apologize for this inconvenience.
 
 ## Using the App:
 The application has three core functions: _List current pets, add a pet,_ and _remove a pet._ Navigation through the prompts and menus is done with the keyboard.
