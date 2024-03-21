@@ -11,8 +11,8 @@ This application is designed to help log and keep track of your pets' ages. Inpu
 
 Because the app follows the traditional passage of time (days = days, years = years), it can be used to keep track of non-virtual pets as well. Some sample pets have been included to demonstrate this feature and can be removed if so desired.
 
-## Initial Setup
-- Download the ZIP file that corresponds with your operating system.
+## Initial Setup for Release Version
+- [Download the ZIP file at the bottom of the release page that corresponds with your operating system.](https://github.com/Jemster07/virtual-pet-age-tracker_CLI/releases/tag/v1.0.0)
     - MacOS Apple Silicon computers: Use __VPAT_macos-arm64__
     - MacOS Intel computers: Use __VPAT_macos-x64__
     - Windows: try using __VPAT_win-x86__ first, then __VPAT_win-x64__ if the former behaves inappropriately
@@ -26,7 +26,7 @@ Because the app follows the traditional passage of time (days = days, years = ye
 ### MacOS Users
 While trying to launch the app, you will encounter several security warnings that instruct you to contact the app developer. Please refer to the support article below on how to resolve these warnings.
 
-[https://support.apple.com/guide/mac-help/apple-cant-check-app-for-malicious-software-mchleab3a043/mac](url)
+[https://support.apple.com/guide/mac-help/apple-cant-check-app-for-malicious-software-mchleab3a043/mac](https://support.apple.com/guide/mac-help/apple-cant-check-app-for-malicious-software-mchleab3a043/mac)
 
 I tested the "Open Anyway" method in the "Privacy & Security" settings and that worked for me, though several files require individual approval.  I apologize for this inconvenience.
 
